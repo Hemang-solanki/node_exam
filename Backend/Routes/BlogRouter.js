@@ -62,12 +62,11 @@ BlogRouter.patch("/edit/:id", async (req, res) => {
 BlogRouter.delete("/delete", async (req, res) => {
   try {
     const { id } = req.body;
-    console.log(id) 
     if (!id) {
       return res.status(400).send({ msg: "Blog ID is required." });
     }
 
-    const result = await BlogModel.findById(id);
+    const result = await BlogModel.findByIdAndDelete(id);
     console.log(result)
 
     if (!result) {
